@@ -3,8 +3,11 @@ import bgImage from '../image/bgImage.png'
 import logo from '../image/logo.png'
 import google from '../image/google 2.png'
 import fb from '../image/facebook.png'
+import { useForm } from "react-hook-form";
 
 const FormContainer = () => {
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const onSubmit = data => console.log(data);
     return (
         <div>
             <div className='grid grid-cols-3 min-h-screen max-w-screen'>
@@ -23,33 +26,42 @@ const FormContainer = () => {
 
                         <p className='text-3xl'>Explore The Best Tours... Hurry up!!</p>
 
-                        <form onSubmit="" className='px-8'>
+                        <form onSubmit={handleSubmit(onSubmit)} className='px-8'>
                             <input
+                                {...register('email', { required: true })}
                                 className="border-2 border-solid border-black rounded my-8 w-full p-2"
                                 type="email"
-                                name="email"
                                 placeholder="Email Address"
-                                required
+
 
                             />
+
+                            {errors.email && (
+                                <span className="text-red-500"> Email is required</span>
+                            )}
 
                             <input
+                                {...register('password', { required: true })}
                                 className="border-2 border-solid border-black rounded my-2 w-full p-2"
                                 type="password"
-                                name="password"
                                 placeholder="Password"
-                                required
 
                             />
+                            {errors.password && (
+                                <span className="text-red-500">
+                                    Password is required
+                                </span>
+                            )}
+
                             <small className="text-red-500 text-right block my-2">
                                 Forgot Password?
                             </small>
-                            <button
+                            <input
                                 type="submit"
-                                className="bg-[#3E489A] text-white  w-full py-2 rounded-lg "
-                            >
-                                Log In
-                            </button>
+                                className="bg-[#3E489A] text-white  w-full py-2 rounded-lg cursor-pointer"
+                                value="Login"
+                            />
+
                         </form>
 
                         <div className='relative mt-6'>
