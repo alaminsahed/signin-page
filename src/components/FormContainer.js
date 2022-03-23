@@ -63,7 +63,7 @@ const FormContainer = () => {
 
                             <p className="text-sm mt-10">
                                 Don't have an account?{" "}
-                                <button className="text-sky-500 font-semibold">
+                                <button className="text-sky-500">
                                     Sign up
                                 </button>
                             </p>
